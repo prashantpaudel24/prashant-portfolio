@@ -10,6 +10,7 @@ import ResumeSection from "@/components/ResumeSection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
 import LoadingScreen from "@/components/LoadingScreen";
+import CursorAnimation from "@/components/CursorAnimation";
 
 const Index = () => {
   const [loading, setLoading] = useState(true);
@@ -21,6 +22,7 @@ const Index = () => {
 
   return (
     <>
+      <CursorAnimation />
       <LoadingScreen isLoading={loading} />
       <Navbar />
       <main>
