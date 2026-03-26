@@ -6,69 +6,24 @@ const skillCategories = [
   {
     icon: Code2,
     title: "Programming",
-    skills: [
-      { name: "C", level: 80 },
-      { name: "C++", level: 75 },
-      { name: "Java", level: 70 },
-      { name: "Python", level: 65 },
-    ],
+    skills: ["Java", "JavaScript", "TypeScript", "MySQL"],
   },
   {
     icon: Globe,
     title: "Web Development",
-    skills: [
-      { name: "HTML", level: 90 },
-      { name: "CSS", level: 85 },
-      { name: "JavaScript", level: 75 },
-      { name: "React", level: 60 },
-    ],
+    skills: ["HTML", "CSS", "React", "Next JS", "Tailwind CSS"],
   },
   {
     icon: Wrench,
     title: "Tools & Platforms",
-    skills: [
-      { name: "Git & GitHub", level: 75 },
-      { name: "Canva", level: 85 },
-      { name: "VS Code", level: 90 },
-      { name: "Figma", level: 60 },
-    ],
+    skills: ["GitHub & Git", "Figma", "Canva", "VS Code"],
   },
   {
     icon: Users,
     title: "Soft Skills",
-    skills: [
-      { name: "Communication", level: 85 },
-      { name: "Teamwork", level: 90 },
-      { name: "Leadership", level: 75 },
-      { name: "Problem Solving", level: 80 },
-    ],
+    skills: ["Problem Solving", "Communication", "Teamwork", "Leadership"],
   },
 ];
-
-const SkillBar = ({ name, level, delay }: { name: string; level: number; delay: number }) => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true });
-
-  return (
-    <div ref={ref} className="mb-3">
-      <div className="flex justify-between text-sm mb-1">
-        <span className="text-muted-foreground">{name}</span>
-        <span className="text-primary font-mono text-xs">{level}%</span>
-      </div>
-      <div className="h-1.5 rounded-full bg-secondary overflow-hidden">
-        <motion.div
-          initial={{ width: 0 }}
-          animate={isInView ? { width: `${level}%` } : {}}
-          transition={{ duration: 1, delay, ease: "easeOut" }}
-          className="h-full rounded-full"
-          style={{
-            background: `linear-gradient(90deg, hsl(175, 80%, 50%), hsl(265, 75%, 60%))`,
-          }}
-        />
-      </div>
-    </div>
-  );
-};
 
 const SkillsSection = () => {
   const ref = useRef(null);
@@ -104,14 +59,19 @@ const SkillsSection = () => {
                 </div>
                 <h3 className="font-semibold text-lg">{cat.title}</h3>
               </div>
-              {cat.skills.map((skill, si) => (
-                <SkillBar
-                  key={skill.name}
-                  name={skill.name}
-                  level={skill.level}
-                  delay={0.3 + ci * 0.1 + si * 0.1}
-                />
-              ))}
+              <div className="flex flex-wrap gap-2">
+                {cat.skills.map((skill, si) => (
+                  <motion.span
+                    key={skill}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={isInView ? { opacity: 1, scale: 1 } : {}}
+                    transition={{ duration: 0.3, delay: 0.3 + ci * 0.1 + si * 0.08 }}
+                    className="px-3 py-1.5 rounded-full text-sm font-medium bg-secondary text-secondary-foreground border border-border hover:bg-primary/10 hover:text-primary hover:border-primary/30 transition-all duration-200 cursor-default"
+                  >
+                    {skill}
+                  </motion.span>
+                ))}
+              </div>
             </motion.div>
           ))}
         </div>
