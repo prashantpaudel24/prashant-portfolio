@@ -4,9 +4,9 @@ import { Briefcase, Calendar } from "lucide-react";
 
 const experiences = [
   {
-    role: "Social Media Intern",
-    company: "Tech Startup Nepal",
-    period: "Jun 2024 – Aug 2024",
+    role: "Internship",
+    company: "SolveeTech Solution Pvt Ltd.",
+    period: "Nov 2025 – Jan 2026",
     responsibilities: [
       "Managed social media accounts and created engaging content",
       "Increased follower engagement by 40% through strategic campaigns",
@@ -24,9 +24,9 @@ const experiences = [
     ],
   },
   {
-    role: "Campus Tech Club Lead",
-    company: "BSc.CSIT Department",
-    period: "2023 – Present",
+    role: "Executive Member",
+    company: "BMC IT Club",
+    period: "2025-2026",
     responsibilities: [
       "Organized coding workshops and tech talks for fellow students",
       "Led a team of 10 in building internal project management tools",

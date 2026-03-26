@@ -32,7 +32,7 @@ const Index = () => {
         <ProjectsSection />
         <AchievementsSection />
         <ExperienceSection />
-        <ResumeSection />
+       
         <ContactSection />
       </main>
       <Footer />

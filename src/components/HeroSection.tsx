@@ -1,13 +1,41 @@
+import { useState } from "react";
 import { motion } from "framer-motion";
 import { ArrowDown, FileDown, FolderOpen } from "lucide-react";
 import avatar from "@/assets/avatar.png";
 
 const HeroSection = () => {
+  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
+    const { currentTarget, clientX, clientY } = e;
+    const { left, top } = currentTarget.getBoundingClientRect();
+    setMousePosition({
+      x: clientX - left,
+      y: clientY - top,
+    });
+  };
+
   return (
     <section
       id="hero"
-      className="relative min-h-screen flex items-center section-padding overflow-hidden"
+      onMouseMove={handleMouseMove}
+      className="relative min-h-screen flex items-center section-padding overflow-hidden group"
     >
+      {/* Interactive Cursor Glow & Dot Grid */}
+      <div 
+        className="pointer-events-none absolute inset-0 z-0 transition-opacity duration-300 opacity-0 group-hover:opacity-100 bg-grid-pattern"
+        style={{
+          maskImage: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, black 10%, transparent 80%)`,
+          WebkitMaskImage: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, black 10%, transparent 80%)`
+        }}
+      />
+      <div 
+        className="pointer-events-none absolute inset-0 z-[1] transition-opacity duration-300 opacity-0 group-hover:opacity-100"
+        style={{
+          background: `radial-gradient(600px circle at ${mousePosition.x}px ${mousePosition.y}px, hsl(var(--primary) / 0.15), transparent 80%)`
+        }}
+      />
+
       {/* Background effects */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/4 -left-32 w-96 h-96 rounded-full bg-primary/5 blur-3xl animate-pulse-glow" />
@@ -19,14 +47,14 @@ const HeroSection = () => {
       <div className="container mx-auto grid md:grid-cols-2 gap-12 items-center relative z-10">
         {/* Text */}
         <div className="order-2 md:order-1">
-          <motion.p
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="text-primary font-mono text-sm mb-4"
+            className="text-primary font-mono text-sm mb-4 h-5"
           >
-            &lt;hello world /&gt;
-          </motion.p>
+            <span className="typewriter-text">&lt;hello world /&gt;</span>
+          </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
@@ -46,7 +74,7 @@ const HeroSection = () => {
             transition={{ delay: 0.5 }}
             className="text-muted-foreground text-lg mb-2"
           >
-            Aspiring IT Professional | Creative Thinker | Problem Solver
+            Aspiring Web Developer  | Designer | Problem Solver
           </motion.p>
 
           <motion.p
@@ -73,12 +101,15 @@ const HeroSection = () => {
               View Projects
             </a>
             <a
-              href="#resume"
+              href="/prascv.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-lg glass gradient-border font-medium hover:scale-105 transition-all duration-300"
             >
               <FileDown size={18} />
-              Download CV
+              Preview Resume
             </a>
+            
           </motion.div>
         </div>
 
@@ -92,7 +123,7 @@ const HeroSection = () => {
           <div className="relative">
             <div className="w-64 h-64 md:w-80 md:h-80 rounded-full glass gradient-border p-2 animate-float">
               <img
-                src={avatar}
+                src="/unnamed.png"
                 alt="Prashant Paudel avatar"
                 className="w-full h-full rounded-full object-cover"
               />
@@ -103,7 +134,7 @@ const HeroSection = () => {
               transition={{ duration: 3, repeat: Infinity, delay: 0.5 }}
               className="absolute -top-2 -right-2 glass rounded-lg px-3 py-1.5 text-xs font-mono text-primary"
             >
-              React ⚛️
+              Nepal 🇳🇵
             </motion.div>
             <motion.div
               animate={{ y: [0, -8, 0] }}

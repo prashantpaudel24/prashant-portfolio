@@ -4,28 +4,28 @@ import { ExternalLink, Github, Layers } from "lucide-react";
 
 const projects = [
   {
-    title: "Student Management System",
-    description: "A comprehensive system to manage student records, grades, and attendance with a clean interface.",
-    tech: ["Java", "MySQL", "Swing"],
-    color: "from-primary/20 to-accent/20",
+    title: "JPANI Market(E-commerce site)",
+    description: "A comprehensive system to buy, sell and manage products.",
+    tech: ["Next.js", "TypeScript", "C#"],
+    image: "/JPANI.jpg",
   },
   {
-    title: "Portfolio Website",
-    description: "A modern, animated personal portfolio showcasing projects and skills with glassmorphism design.",
-    tech: ["React", "TypeScript", "Tailwind"],
-    color: "from-accent/20 to-primary/20",
+    title: " XYZ-FlUX: A Creative UI Showcase",
+    description: "A creative showcase of modern UI designs and interactions.",
+    tech: ["React", "JavaScript", "Tailwind"],
+    image: "/XYZ.jpg",
   },
   {
-    title: "Weather Dashboard",
-    description: "Real-time weather application with location search, forecasts, and beautiful data visualizations.",
-    tech: ["HTML", "CSS", "JavaScript", "API"],
-    color: "from-primary/20 to-accent/10",
+    title: "Form Validation System",
+    description: "A robust form validation solution with result in the same page after form submission and error handling.",
+    tech: ["React", "TailwindCSS", "JavaScript", "Zod"],
+    image: "/Form.jpg",
   },
   {
-    title: "Chat Application",
-    description: "A real-time messaging app with user authentication, group chats, and message history.",
-    tech: ["Python", "Socket.io", "Flask"],
-    color: "from-accent/10 to-primary/20",
+    title: "Online Booking System",
+    description: "A real-time booking application with user authentication, appointment scheduling, and calendar integration.",
+    tech: ["HTML", "CSS", "PHP", "MySQL"],
+    image: "/htl.jpg",
   },
 ];
 
@@ -57,15 +57,14 @@ const ProjectsSection = () => {
               transition={{ duration: 0.5, delay: i * 0.15 }}
               className="glass rounded-xl overflow-hidden group hover-lift"
             >
-              {/* Thumbnail placeholder */}
-              <div
-                className={`h-44 bg-gradient-to-br ${project.color} flex items-center justify-center relative overflow-hidden`}
-              >
-                <Layers
-                  size={48}
-                  className="text-primary/30 group-hover:scale-110 transition-transform duration-500"
+              {/* Thumbnail */}
+              <div className="h-52 md:h-60 flex items-center justify-center relative overflow-hidden bg-muted/50">
+                <img 
+                  src={project.image} 
+                  alt={project.title} 
+                  className="absolute inset-0 w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-out"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-card/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-card to-transparent opacity-80" />
               </div>
 
               <div className="p-6">

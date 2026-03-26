@@ -15,7 +15,11 @@ const LoadingScreen = ({ isLoading }: { isLoading: boolean }) => (
           className="text-center"
         >
           <div className="w-12 h-12 rounded-full border-2 border-primary border-t-transparent animate-spin mx-auto mb-4" />
-          <p className="text-gradient font-bold text-xl">PP.</p>
+            <img
+            src="/LoGo.png"
+            alt="Logo"
+            className="h-10 w-auto transition-transform duration-300 hover:scale-110"
+          />
         </motion.div>
       </motion.div>
     )}

@@ -32,32 +32,41 @@ const Navbar = () => {
       }`}
     >
       <div className="container mx-auto flex items-center justify-between px-4">
-        <a href="#hero" className="text-xl font-bold text-gradient">
-          PP.
+        <a href="#hero" className="">
+          <img
+            src="/LoGo.png"
+            alt="Logo"
+            className="h-10 w-auto transition-transform duration-300 hover:scale-110"
+          />
         </a>
 
-        {/* Desktop */}
-        <div className="hidden md:flex items-center gap-8">
-          {navItems.map((item) => (
-            <a
-              key={item.href}
-              href={item.href}
-              className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200 relative group"
-            >
-              {item.label}
-              <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
-            </a>
-          ))}
-          <ThemeToggle />
-        </div>
+        {/* Navigation & Actions */}
+        <div className="flex items-center gap-4 md:gap-8">
+          {/* Desktop Links */}
+          <div className="hidden md:flex items-center gap-8">
+            {navItems.map((item) => (
+              <a
+                key={item.href}
+                href={item.href}
+                className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-200 relative group"
+              >
+                {item.label}
+                <span className="absolute -bottom-1 left-0 w-0 h-0.5 bg-primary transition-all duration-300 group-hover:w-full" />
+              </a>
+            ))}
+          </div>
 
-        {/* Mobile toggle */}
-        <button
-          onClick={() => setMobileOpen(!mobileOpen)}
-          className="md:hidden text-foreground"
-        >
-          {mobileOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
+          <div className="flex items-center gap-4">
+            <ThemeToggle />
+            {/* Mobile toggle */}
+            <button
+              onClick={() => setMobileOpen(!mobileOpen)}
+              className="md:hidden text-foreground outline-none"
+            >
+              {mobileOpen ? <X size={24} /> : <Menu size={24} />}
+            </button>
+          </div>
+        </div>
       </div>
 
       {/* Mobile menu */}
@@ -75,7 +84,7 @@ const Navbar = () => {
                   key={item.href}
                   href={item.href}
                   onClick={() => setMobileOpen(false)}
-                  className="text-sm text-muted-foreground hover:text-primary transition-colors py-2"
+                  className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors py-2"
                 >
                   {item.label}
                 </a>

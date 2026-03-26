@@ -1,17 +1,44 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState } from "react";
-import { Send, Linkedin, Github, Mail, MapPin } from "lucide-react";
+import { Send, Linkedin, Github,Facebook, Mail, MapPin, Phone } from "lucide-react";
 
 const ContactSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
   const [form, setForm] = useState({ name: "", email: "", message: "" });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Placeholder submit
-    alert("Message sent! (This is a placeholder — connect a backend to enable real submissions.)");
-    setForm({ name: "", email: "", message: "" });
+    setIsSubmitting(true);
+    
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/ppoudel551@gmail.com", {
+        method: "POST",
+        headers: { 
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        },
+        body: JSON.stringify({
+          name: form.name,
+          email: form.email,
+          message: form.message,
+          _subject: "New Contact from Portfolio!"
+        })
+      });
+
+      if (response.ok) {
+        alert("Message sent successfully! Note: You may need to activate FormSubmit on your email for the first message.");
+        setForm({ name: "", email: "", message: "" });
+      } else {
+        alert("Oops! There was a problem sending your message.");
+      }
+    } catch (error) {
+      alert("Oops! There was a problem sending your message.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -40,19 +67,24 @@ const ContactSection = () => {
             <div className="glass rounded-xl p-5">
               <div className="flex items-center gap-3 mb-2">
                 <Mail size={18} className="text-primary" />
-                <span className="text-sm">prashant@example.com</span>
+                <span className="text-sm">ppoudel551@gmail.com</span>
               </div>
               <div className="flex items-center gap-3 mb-2">
                 <MapPin size={18} className="text-primary" />
-                <span className="text-sm">Kathmandu, Nepal</span>
+                <span className="text-sm">Tilottama-07, Rupandehi, Nepal</span>
+              </div>
+               <div className="flex items-center gap-3 mb-2">
+                <Phone size={18} className="text-primary" />
+                <span className="text-sm">+977 984533357</span>
               </div>
             </div>
 
             <div className="flex gap-3">
               {[
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Github, href: "#", label: "GitHub" },
-                { icon: Mail, href: "mailto:prashant@example.com", label: "Email" },
+                 { icon: Facebook, href: "https://www.facebook.com/", label: "Facebook" },
+                { icon: Linkedin, href: "https://www.linkedin.com/in/prashantpaudel/", label: "LinkedIn" },
+                { icon: Github, href: "https://github.com/prashantpaudel24", label: "GitHub" },
+                { icon: Mail, href: "mailto:ppoudel551@gmail.com", label: "Email" },
               ].map((social) => (
                 <a
                   key={social.label}

@@ -39,10 +39,18 @@ const ResumeSection = () => {
           </div>
 
           <div className="flex justify-center gap-4">
-            <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:scale-105 transition-all duration-300">
+            <a
+              href="/prascv.pdf"
+              download="Prashant_Paudel_CV.pdf"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:scale-105 transition-all duration-300"
+            >
               <FileDown size={18} />
               Download CV
-            </button>
+            </a>
+            {/* <button className="inline-flex items-center gap-2 px-6 py-3 rounded-lg bg-primary text-primary-foreground font-medium hover:scale-105 transition-all duration-300">
+              <FileDown size={18} />
+              Download CV
+            </button> */}
           </div>
         </motion.div>
       </div>

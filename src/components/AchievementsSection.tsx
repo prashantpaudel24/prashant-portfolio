@@ -3,15 +3,15 @@ import { useRef } from "react";
 import { Award, BookOpen, Trophy, Star } from "lucide-react";
 
 const achievements = [
-  { icon: Trophy, label: "Academic Excellence", desc: "Consistent top performer in BSc.CSIT program", year: "2023-Present" },
-  { icon: Award, label: "Hackathon Participant", desc: "Participated in national coding competitions", year: "2023" },
+  { icon: Trophy, label: "Academic ", desc: "Consistent in BSc.CSIT program", year: "2022-Present" },
+  { icon: Award, label: "Sports", desc: "Gold in every field like Basketball, Volleyball, Football ", year: "2024" },
   { icon: BookOpen, label: "Digital Literacy Volunteer", desc: "Taught basic computer skills in local community", year: "2022" },
-  { icon: Star, label: "Dean's List", desc: "Recognized for outstanding academic achievement", year: "2024" },
+  { icon: Star, label: "Certification's", desc: "Gained different certification achievement", year: "2026" },
 ];
 
 const stats = [
-  { value: "10+", label: "Projects Completed" },
-  { value: "5+", label: "Certifications" },
+  { value: "6+", label: "Projects Completed" },
+  { value: "10+", label: "Certifications" },
   { value: "500+", label: "Hours of Coding" },
   { value: "3+", label: "Internships & Roles" },
 ];
