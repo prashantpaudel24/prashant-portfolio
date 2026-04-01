@@ -74,7 +74,7 @@ const HeroSection = () => {
             transition={{ delay: 0.5 }}
             className="text-muted-foreground text-lg mb-2"
           >
-            Aspiring Web Developer  | Designer | Problem Solver
+            Aspiring Web Developer  | Designer | Sports Enthusiast
           </motion.p>
 
           <motion.p

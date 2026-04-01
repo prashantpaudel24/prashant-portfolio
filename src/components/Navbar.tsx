@@ -14,10 +14,10 @@ const navItems = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
+  const [mobileOpen, setMobileOpen] = useState(false);  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 50);
+    };
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
@@ -45,7 +45,7 @@ const Navbar = () => {
           {/* Desktop Links */}
           <div className="hidden md:flex items-center gap-8">
             {navItems.map((item) => (
-              <a
+               <a
                 key={item.href}
                 href={item.href}
                 className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors duration-200 relative group"
@@ -80,10 +80,34 @@ const Navbar = () => {
           >
             <div className="flex flex-col p-4 gap-3">
               {navItems.map((item) => (
-                <a
+                 <a
                   key={item.href}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
+                  onClick={(e) => {
+                    e.preventDefault();
+                    setMobileOpen(false);
+                    const targetId = item.href.replace('#', '');
+                    
+                    setTimeout(() => {
+                      const element = document.getElementById(targetId);
+                      if (element) {
+                        let absoluteY = element.getBoundingClientRect().top + window.scrollY;
+                        
+                        // Desktop padding is py-28 (112px), mobile is py-20 (80px).
+                        // To maintain the exact same satisfying visual spacing beneath the fixed 
+                        // 64px navbar on mobile ("like in desktop"), we subtract the 32px difference!
+                        if (window.innerWidth < 768) {
+                          absoluteY -= 32;
+                        }
+
+                        window.scrollTo({
+                          top: absoluteY,
+                          behavior: 'smooth'
+                        });
+                        window.history.pushState(null, '', item.href);
+                      }
+                    }, 350);
+                  }}
                   className="text-sm font-medium text-foreground/90 hover:text-primary transition-colors py-2"
                 >
                   {item.label}
